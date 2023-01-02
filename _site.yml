@@ -1,5 +1,5 @@
-name: "meds-distill-template"
-title: "EDS 123"
+name: "EDS232-website"
+title: "EDS 232"
 description: |
   MEDS Courses distill template
 output_dir: "docs"

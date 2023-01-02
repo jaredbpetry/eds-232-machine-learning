@@ -19,34 +19,30 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # UPDATE IMAGE HERE 
 # or copy/paste this code elsewhere, updating the file path, to add other images to your site!
-knitr::include_graphics("img/usgs_sat.jpeg")
+knitr::include_graphics("img/MLRobotLearnBanner.png")
 ```
 
-## Welcome to the EDS 232 website 
-
-
-### Test change
-
+## Welcome to the EDS 232 website
 
 ## Course description
 
-
+Machine learning is a field of inquiry devoted to understanding and building methods that 'learn', that is, methods that leverage data to improve performance on some set of tasks. In this course, we are going to focus on the core concepts of machine learning that beginning ML researchers must know. We will cover 'classical machine learning' primarily using R, and explore some applications to environmental science. To understand broader concepts of artificial intelligence or deep learning, a strong fundamental knowledge of machine learning is indispensable.
 
 ## Teaching team
 
 **Instructor:** Mateo Robbins (mjrobbins\@ucsb.edu)
 
--   **Office:** 
+-   **Office:** NCEAS Group Office
 -   **Office hours:** Monday 11:00-12:00
 
-**Teaching assistant:** 
+**Teaching assistant:** TBD
 
 -   **Office:**
--   **Office hours:** 
+-   **Office hours:**
 
 ## Important links
 
--   Link to full course syllabus (here is the [MEDS optional syllabus template](https://docs.google.com/document/d/1b2CElvwKk-haEA1axY5KvTEBbiSPUf7dIRUNX7gCI6w/edit?usp=sharing))
+-   [Link to full course syllabus](https://docs.google.com/document/d/1z095e0DKUpMwVWfztyUDLF2J1aDLbanDyJ_BGgMnkJ4)
 
 -   Link to Code of Conduct (Bren / UCSB)
 
@@ -54,16 +50,21 @@ knitr::include_graphics("img/usgs_sat.jpeg")
 
 ## Weekly course schedule
 
--   **Lectures:** M , W
+-   **Lectures:** M, W 9:30 - 10:45am PST (NCEAS)
 
 ## Learning objectives
 
-Condimentum id venenatis a condimentum. Ultricies mi quis hendrerit dolor magna eget est. Turpis egestas maecenas pharetra convallis. Sem nulla pharetra diam sit amet. Diam volutpat commodo sed egestas egestas fringilla. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Ornare massa eget egestas purus viverra accumsan in.
+The goal of EDS 232 is to equip students with a strong foundation in the core concepts of machine learning. By the end of the course, students should be able to: 
 
--   Vulputate eu scelerisque felis imperdiet proin.
--   Euismod nisi porta lorem mollis aliquam.
--   Urna molestie at elementum eu facilisis sed odio morbi quis.
--   Convallis a cras semper auctor neque. Semper quis lectus nulla at volutpat diam ut venenatis tellus.
+-   Build machine learning models in R using popular machine learning packages
+
+-   Build and train supervised machine learning models for prediction and binary classification tasks, including linear and logistic regression.
+
+-   Apply best practices for machine learning development so that your models generalize to data and tasks in the real world.
+
+-   Build and use decision trees and tree ensemble methods, including random forests and boosted trees.
+
+-   Use unsupervised learning techniques for unsupervised learning: including clustering and anomaly detection.
 
 ## Course requirements
 
@@ -86,15 +87,14 @@ Condimentum id venenatis a condimentum. Ultricies mi quis hendrerit dolor magna 
 
 ## Tentative topics
 
-| Week | Lecture topics | Lab topics |
-|------|----------------|------------|
-| 1    | Topics         | Topics     |
-| 2    | Topics         | Topics     |
-| 3    | Topics         | Topics     |
-| 4    | Topics         | Topics     |
-| 5    | Topics         | Topics     |
-| 6    | Topics         | Topics     |
-| 7    | Topics         | Topics     |
-| 8    | Topics         | Topics     |
-| 9    | Topics         | Topics     |
-| 10   | Topics         | Topics     |
+| Week | Lecture topics                                 |
+|------|------------------------------------------------|
+| 1    | Introduction, ML Modeling Fundamentals I       |
+| 2    | Linear Regression, ML Modeling Fundamentals II |
+| 3    | Logistic and Regularized Regression            |
+| 4    | K Nearest Neighbors, Decision Trees            |
+| 5    | Random Forests, Gradient Boosting              |
+| 6    | K-Means and Hierarchical Clustering            |
+| 7    | Ethics, Justice, Bias                          |
+| 8    | Deep Learning and Support Vectors              |
+| 9    | TBD                                            |
