@@ -1,7 +1,7 @@
 name: "EDS232-website"
 title: "EDS 232"
 description: |
-  MEDS Courses distill template
+  Course website for the MEDS Machine Learning in Environmental Science (EDS 232)
 output_dir: "docs"
 navbar:
   right:
@@ -34,7 +34,7 @@ navbar:
     # - text: "Resources"
     #   href: resources.html
     - icon: fab fa-github
-      href: https://github.com/allisonhorst/meds-distill-template
+      href: https://github.com/MaRo406/eds-232-machine-learning
 output:
   distill::distill_article:
     toc: true

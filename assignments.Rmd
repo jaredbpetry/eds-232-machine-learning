@@ -2,28 +2,28 @@
 title: "Assignments"
 ---
 
-<p style="color: #ba5e00">
+<p style="color: #ba5e00"> Assigned readings and labs will be posted to this page on a weekly basis.
 
 </p>
 
 ## Week 1
 
-### Slides: 
+### Slides:
 
--   
+-   Course Welcome and Intro
 
 ### Assigned Reading:
 
 -   [HOML Ch. 1 (1.1 - 1.4)](https://bradleyboehmke.github.io/HOML/intro.html)
 
-### Lab: 
+### Lab:
 
-link
+<!-- \### Assignment materials and dates -->
 
-\### Assignment materials and dates
+<!-- | Assignment materials | Assigned | Due date | -->
 
-| Assignment materials | Assigned | Due date |
-|----------------------|----------|----------|
-| Link                 |          |          |
+<!-- |----------------------|----------|----------| -->
 
-### 
+<!-- | Link                 |          |          | -->
+
+<!-- ###  -->
