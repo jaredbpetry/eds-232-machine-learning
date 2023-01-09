@@ -10,13 +10,13 @@ title: "Assignments"
 
 ### Slides:
 
--   Course Welcome and Intro
+-   Lecture 1: [Course Welcome and Intro](https://docs.google.com/presentation/d/19t56kmk_K23At31wD8-u_MRKOtari-qHw5b3KCD4ReU/edit?usp=sharing)
 
 ### Assigned Reading:
 
 -   [HOML Ch. 1 (1.1 - 1.4)](https://bradleyboehmke.github.io/HOML/intro.html)
 
-Supplementary Reading:
+### Supplementary Reading:
 
 -   [Statistical Modeling: The Two Cultures](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full)
 
