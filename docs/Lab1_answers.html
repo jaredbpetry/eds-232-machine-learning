@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="{STUDENT NAME}" />
+
+<meta name="date" content="2023-01-11" />
+
+<title>Lab1</title>
+
+<!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content=""/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+<!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+<style type="text/css">
+body {
+  padding-top: 60px;
+}
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+/* Header font */
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
+
+/* Body font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap');
+
+/* Code font (Roboto Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --title-weight:    400;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #003660;
+  --title-weight:    400;
+  --header-color:    rgba(4, 124, 145, 1);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    Sanchez;
+  --mono-font:       Roboto Mono;
+  --body-font:       Nunito Sans;
+  --navbar-font:     Nunito Sans;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       20px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        18px;
+  --hover-color:      white;
+  --bkgd-color:       #047C91;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #003660;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+
+d-article h2 {
+    grid-column: text;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+    padding-top: 20px;
+}
+
+d-article h3 {
+    grid-column: text;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+}
+
+a.title {
+  font-style: bold;
+}
+
+a, .nav-dropdown .nav-dropbtn {
+  font-weight: 500;
+}
+
+/* Set colors for headers */
+d-article h1, d-article h2, d-article h3, d-article h4, d-article h5, d-article h6 {
+    color: rgba(4, 124, 145, 0.8);
+}
+
+/* Formatting tables (can update here or individually) */
+table, td, tr, th {
+  border-collapse: collapse;
+  font-family: Nunito Sans;
+  border: 1px solid gainsboro;
+  vertical-align: top;
+}
+
+d-article table th, d-article table td {
+    font-size: 15px;
+    padding: 2px 8px;
+    border: 1px solid gainsboro;
+}
+
+/* Code style formatting of text */
+code {
+  font-family: Roboto Mono;
+}
+
+.distill-site-header a, .distill-site-header .title {
+    text-align: left;
+    padding: 14px 14px 14px 14px;
+}
+
+d-title h1 {
+    grid-column: text;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+}
+
+/* Update toc list font */
+.d-contents nav ul li {
+    font-size: 20px;
+}
+
+/* Update overall layout (body width) */
+@media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 90px 90px 90px 90px 90px 90px 90px 90px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
+      grid-column-gap: 20px;
+    }
+
+/* Change navbar dropdown menu bg color */
+.nav-dropdown-content a:hover {
+    background-color: #003660;
+    color: black;
+}
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/pandoc/header-attrs.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/jquerylib/lib/3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/shim/html5shiv.min.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/navigation-1.1/tabsets.js"></script>
+<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/highlightjs/default.css" rel="stylesheet" />
+<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/highlightjs/highlight.js"></script>
+<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/fontawesome/css/all.css" rel="stylesheet" />
+<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/fontawesome/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">EDS 232</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Home</a>
+<a href="assignments.html">Assignments</a>
+<a href="https://github.com/MaRo406/eds-232-machine-learning">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="assignments.html">Assignments</a>
+</li>
+<li>
+  <a href="https://github.com/MaRo406/eds-232-machine-learning">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab1</h1>
+<h4 class="author">{STUDENT NAME}</h4>
+<h4 class="date">2023-01-11</h4>
+
+</div>
+
+
+<div id="examine-the" class="section level2">
+<h2>Examine the</h2>
+<pre><code>## Rows: 1,757
+## Columns: 27
+## $ ...1              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
+## $ `City Name`       &lt;chr&gt; &quot;BALTIMORE&quot;, &quot;BALTIMORE&quot;, &quot;BALTIMORE&quot;, &quot;BALTIMORE&quot;, …
+## $ Type              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Package           &lt;chr&gt; &quot;24 inch bins&quot;, &quot;24 inch bins&quot;, &quot;24 inch bins&quot;, &quot;24 …
+## $ Variety           &lt;chr&gt; NA, NA, &quot;HOWDEN TYPE&quot;, &quot;HOWDEN TYPE&quot;, &quot;HOWDEN TYPE&quot;,…
+## $ `Sub Variety`     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Grade             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Date              &lt;chr&gt; &quot;4/29/17&quot;, &quot;5/6/17&quot;, &quot;9/24/16&quot;, &quot;9/24/16&quot;, &quot;11/5/16&quot;…
+## $ `Low Price`       &lt;dbl&gt; 270, 270, 160, 160, 90, 90, 160, 160, 160, 160, 160,…
+## $ `High Price`      &lt;dbl&gt; 280, 280, 160, 160, 100, 100, 170, 160, 170, 160, 17…
+## $ `Mostly Low`      &lt;dbl&gt; 270, 270, 160, 160, 90, 90, 160, 160, 160, 160, 160,…
+## $ `Mostly High`     &lt;dbl&gt; 280, 280, 160, 160, 100, 100, 170, 160, 170, 160, 17…
+## $ Origin            &lt;chr&gt; &quot;MARYLAND&quot;, &quot;MARYLAND&quot;, &quot;DELAWARE&quot;, &quot;VIRGINIA&quot;, &quot;MAR…
+## $ `Origin District` &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ `Item Size`       &lt;chr&gt; &quot;lge&quot;, &quot;lge&quot;, &quot;med&quot;, &quot;med&quot;, &quot;lge&quot;, &quot;lge&quot;, &quot;med&quot;, &quot;lg…
+## $ Color             &lt;chr&gt; NA, NA, &quot;ORANGE&quot;, &quot;ORANGE&quot;, &quot;ORANGE&quot;, &quot;ORANGE&quot;, &quot;ORA…
+## $ Environment       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ `Unit of Sale`    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Quality           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Condition         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Appearance        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Storage           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Crop              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ Repack            &lt;chr&gt; &quot;E&quot;, &quot;E&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N…
+## $ `Trans Mode`      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ ...26             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ ...27             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
+<pre><code>##  [1] &quot;x1&quot;              &quot;city_name&quot;       &quot;type&quot;            &quot;package&quot;        
+##  [5] &quot;variety&quot;         &quot;sub_variety&quot;     &quot;grade&quot;           &quot;date&quot;           
+##  [9] &quot;low_price&quot;       &quot;high_price&quot;      &quot;mostly_low&quot;      &quot;mostly_high&quot;    
+## [13] &quot;origin&quot;          &quot;origin_district&quot; &quot;item_size&quot;       &quot;color&quot;          
+## [17] &quot;environment&quot;     &quot;unit_of_sale&quot;    &quot;quality&quot;         &quot;condition&quot;      
+## [21] &quot;appearance&quot;      &quot;storage&quot;         &quot;crop&quot;            &quot;repack&quot;         
+## [25] &quot;trans_mode&quot;      &quot;x26&quot;             &quot;x27&quot;</code></pre>
+</div>
+<div id="select-desired-columns" class="section level2">
+<h2>Select desired columns</h2>
+<pre><code>## # A tibble: 5 × 6
+##   variety     city_name package      low_price high_price date   
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
+## 1 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 4/29/17
+## 2 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 5/6/17 
+## 3 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 9/24/16
+## 4 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 9/24/16
+## 5 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 11/5/16</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre><code>## # A tibble: 1,757 × 7
+##    variety     city_name package      low_price high_price date       month
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;
+##  1 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 2017-04-29     4
+##  2 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 2017-05-06     5
+##  3 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 2016-09-24     9
+##  4 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 2016-09-24     9
+##  5 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 2016-11-05    11
+##  6 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 2016-11-12    11
+##  7 HOWDEN TYPE BALTIMORE 36 inch bins       160        170 2016-09-24     9
+##  8 HOWDEN TYPE BALTIMORE 36 inch bins       160        160 2016-09-24     9
+##  9 HOWDEN TYPE BALTIMORE 36 inch bins       160        170 2016-10-01    10
+## 10 HOWDEN TYPE BALTIMORE 36 inch bins       160        160 2016-10-01    10
+## # … with 1,747 more rows</code></pre>
+<pre><code>## # A tibble: 7 × 8
+##   variety     city_name package      low_price high_price date         day month
+##   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 2017-04-29   119     4
+## 2 &lt;NA&gt;        BALTIMORE 24 inch bins       270        280 2017-05-06   126     5
+## 3 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 2016-09-24   268     9
+## 4 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 2016-09-24   268     9
+## 5 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 2016-11-05   310    11
+## 6 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 2016-11-12   317    11
+## 7 HOWDEN TYPE BALTIMORE 36 inch bins       160        170 2016-09-24   268     9</code></pre>
+<p>There are two column dealing with price, high and low. Let’s combine
+them into a single average price column.</p>
+<p>Let’s take a look at pumpkins sales throughout the year.</p>
+<p><em>Question:</em> Create a scatter plot using price on the y-axis
+and day on the x-axis.</p>
+<p><img src="Lab1_answers_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Now, before we go any further, let’s take another look at the data.
+Notice anything odd?</p>
+<p>That’s right: pumpkins are sold in many different configurations.
+Some are sold in 1 1/9 bushel measures, and some in 1/2 bushel measures,
+some per pumpkin, some per pound, and some in big boxes with varying
+widths.</p>
+<p>Let’s verify this:</p>
+<pre><code>## # A tibble: 15 × 1
+##    package             
+##    &lt;chr&gt;               
+##  1 24 inch bins        
+##  2 36 inch bins        
+##  3 50 lb sacks         
+##  4 1 1/9 bushel cartons
+##  5 1/2 bushel cartons  
+##  6 1 1/9 bushel crates 
+##  7 bushel cartons      
+##  8 bins                
+##  9 35 lb cartons       
+## 10 each                
+## 11 20 lb cartons       
+## 12 50 lb cartons       
+## 13 40 lb cartons       
+## 14 bushel baskets      
+## 15 22 lb cartons</code></pre>
+<p>Pumpkins seem to be very hard to weigh consistently, so let’s filter
+them by selecting only pumpkins with the string bushel in the package
+column and put this in a new data frame “new_pumpkins”.</p>
+<p><em>Question</em> Use a combination of dplyr::filter() and
+stringr::str_detect() to achieve what we want.</p>
+<pre><code>## # A tibble: 5 × 9
+##   variety    city_name package low_price high_price date         day month price
+##   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 &lt;NA&gt;       BALTIMORE 24 inc…       270        280 2017-04-29   119     4   275
+## 2 &lt;NA&gt;       BALTIMORE 24 inc…       270        280 2017-05-06   126     5   275
+## 3 HOWDEN TY… BALTIMORE 24 inc…       160        160 2016-09-24   268     9   160
+## 4 HOWDEN TY… BALTIMORE 24 inc…       160        160 2016-09-24   268     9   160
+## 5 HOWDEN TY… BALTIMORE 24 inc…        90        100 2016-11-05   310    11    95</code></pre>
+<pre><code>## # A tibble: 15 × 1
+##    package             
+##    &lt;chr&gt;               
+##  1 24 inch bins        
+##  2 36 inch bins        
+##  3 50 lb sacks         
+##  4 1 1/9 bushel cartons
+##  5 1/2 bushel cartons  
+##  6 1 1/9 bushel crates 
+##  7 bushel cartons      
+##  8 bins                
+##  9 35 lb cartons       
+## 10 each                
+## 11 20 lb cartons       
+## 12 50 lb cartons       
+## 13 40 lb cartons       
+## 14 bushel baskets      
+## 15 22 lb cartons</code></pre>
+<pre><code>## [1] 415   9</code></pre>
+<pre><code>## # A tibble: 10 × 9
+##    variety  city_name package  low_price high_price date         day month price
+##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-09-24   268     9  15  
+##  2 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-09-24   268     9  18  
+##  3 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-01   275    10  18  
+##  4 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-01   275    10  17  
+##  5 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-08   282    10  15  
+##  6 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-08   282    10  18  
+##  7 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-08   282    10  17  
+##  8 PIE TYPE BALTIMORE 1 1/9 b…        17       18.5 2016-10-08   282    10  17.8
+##  9 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-15   289    10  15  
+## 10 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-15   289    10  17</code></pre>
+<p>You can see that we have narrowed down to 415 rows of data containing
+pumpkins by the bushel.</p>
+<p>But wait! There’s one more thing to do</p>
+<p>Did you notice that the bushel amount varies per row? You need to
+normalize the pricing so that you show the pricing per bushel, not per 1
+1/9 or 1/2 bushel. Time to do some math to standardize it.</p>
+<p>We’ll use the function case_when() to mutate the Price column
+depending on some conditions. case_when allows you to vectorise multiple
+if_else()statements.</p>
+<pre><code>## # A tibble: 30 × 9
+##    variety  city_name package  low_price high_price date         day month price
+##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-09-24   268     9  13.6
+##  2 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-09-24   268     9  16.4
+##  3 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-01   275    10  16.4
+##  4 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-01   275    10  15.5
+##  5 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-08   282    10  13.6
+##  6 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-08   282    10  16.4
+##  7 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-08   282    10  15.5
+##  8 PIE TYPE BALTIMORE 1 1/9 b…        17       18.5 2016-10-08   282    10  16.1
+##  9 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-15   289    10  13.6
+## 10 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-15   289    10  15.5
+## # … with 20 more rows</code></pre>
+</div>
+<div id="data-visualization" class="section level2">
+<h2>Data Visualization</h2>
+<p><img src="Lab1_answers_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><em>Question:</em> Is this a useful plot 🤷? Does anything about it
+surprise you?</p>
+<p>How do we make it useful? To get charts to display useful data, you
+usually need to group the data somehow.</p>
+<p><em>Question:</em> Group the pumpkins into groups based on the month
+column and then find the mean price for each month. Plot the results
+with a bar plot.</p>
+<p>Hint: use dplyr::group_by() %&gt;% summarize()</p>
+<pre><code>## # A tibble: 5 × 2
+##   month mean_price
+##   &lt;dbl&gt;      &lt;dbl&gt;
+## 1     8       24.5
+## 2     9       28.6
+## 3    10       28.4
+## 4    11       25.1
+## 5    12       15.6</code></pre>
+<p><img src="Lab1_answers_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>#Preprocessing data for modelling using recipes</p>
+<p>What if we wanted to predict the price of a pumpkin based on the city
+or package columns which are of type character? How could we find the
+correlation between, say, package and price?</p>
+<p>Machine learning models work best with numeric features rather than
+text values, so you generally need to convert categorical features into
+numeric representations.</p>
+<p>This means that we have to find a way to reformat our predictors to
+make them easier for a model to use effectively, a process known as
+<strong>feature engineering</strong>.</p>
+<p>Different models have different preprocessing requirements. For
+instance, least squares requires encoding categorical variables such as
+month, variety and city_name. This simply involves translating a column
+with categorical values into one or more numeric columns that take the
+place of the original.</p>
+<p>Now let’s introduce another useful Tidymodels package: recipes -
+which will help you preprocess data before training your mode. A recipe
+is an object that defines what steps should be applied to a data set in
+order to get it ready for modelling.</p>
+<p>Now, let’s create a recipe that prepares our data for modelling by
+substituting a unique integer for all the observations in the predictor
+columns:</p>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          8
+## 
+## Operations:
+## 
+## Integer encoding for all_predictors()</code></pre>
+<p>OK, we created our first recipe that specifies an outcome (price) and
+its corresponding predictors and that all the predictor columns should
+be encoded into a set of integers. Let’s quickly break it down:</p>
+<p>The call to recipe() with a formula tells the recipe the roles of the
+variables using new_pumpkins data as the reference. For instance the
+price column has been assigned an outcome role while the rest of the
+columns have been assigned a predictor role.</p>
+<p>step_integer(all_predictors(), zero_based = TRUE) specifies that all
+the predictors should be converted into a set of integers with the
+numbering starting at 0.</p>
+<p>How can we confirm that the recipe is doing what we intend? Once your
+recipe is defined, you can estimate the parameters required to
+preprocess the data, and then extract the processed data. You don’t
+typically need to do this when you use Tidymodels (we’ll see the normal
+convention in just a minute with workflows) but its a good sanity check
+for confirming that recipes are doing what you expect.</p>
+<p>For that, you’ll need two more verbs: prep() and bake()</p>
+<p>prep(): estimates the required parameters from a training set that
+can be later applied to other data sets.</p>
+<p>bake(): takes a prepped recipe and applies the operations to any data
+set.</p>
+<p>Now let’s prep and bake our recipes to confirm that under the hood,
+the predictor columns will be first encoded before a model is fit.</p>
+<pre><code>## # A tibble: 10 × 9
+##    variety city_name package low_price high_price  date   day month price
+##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1       3         1       0         5          3     0     5     1  13.6
+##  2       3         1       0        10          7     0     5     1  16.4
+##  3       3         1       0        10          7     6    11     2  16.4
+##  4       3         1       0         9          6     6    11     2  15.5
+##  5       3         1       0         5          3     7    12     2  13.6
+##  6       3         1       0        10          7     7    12     2  16.4
+##  7       3         1       0         9          6     7    12     2  15.5
+##  8       3         1       0         9          8     7    12     2  16.1
+##  9       3         1       0         5          3     8    13     2  13.6
+## 10       3         1       0         9          6     8    13     2  15.5</code></pre>
+<p>The processed data baked_pumpkins has all its predictors encoded
+confirming that indeed the preprocessing steps defined as our recipe
+will work as expected. This makes it harder for you to read but more
+intelligible for tidymodels. Take a look at how the observations have
+been mapped to numbers.</p>
+<p><em>Question:</em> From looking at the baked_pumpkins tibble, how
+many total cities are represented in the data set?</p>
+<p>baked_pumpkins is a data frame that we can perform computations on.
+For instance, let’s try to find a good correlation between two variables
+to potentially build a good predictive model. We’ll use the function
+cor() to do this.</p>
+<pre><code>## [1] 0.6061713</code></pre>
+<p><em>Question:</em> Calculate the correlation between pumpkin price
+and two other variables in the data set</p>
+<pre><code>## [1] 0.3236397</code></pre>
+<pre><code>## [1] -0.1487829</code></pre>
+<p><em>Question:</em> Which of these three variables is most highly
+correlated with price? Why might this be?</p>
+<p>Now let’s visualize a correlation matrix of all the columns using the
+corrplot package.</p>
+<p><img src="Lab1_answers_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="build-a-linear-regression-model" class="section level1">
+<h1>Build a linear regression model</h1>
+<p>Now that we have build a recipe, and actually confirmed that the data
+will be pre-processed appropriately, let’s now build a regression model
+to answer the question: What price can I expect of a given pumpkin
+package?</p>
+<p>#Train a linear regression model using the training set As you may
+have already figured out, the column price is the outcome variable while
+the package column is the predictor variable.</p>
+<p>To do this, we’ll first split the data. Data splitting is a key part
+of the machine learning process. For now we’ll do a 80/2o split, where
+80% of the data goes into training and 20% into the test set. Then we’ll
+define a recipe that will encode the predictor column into a set of
+integers, then build a model specification. We won’t prep and bake our
+recipe since we already know it will preprocess the data as
+expected.</p>
+<p>Now that we have a recipe and a model specification, we need to find
+a way of bundling them together into an object that will first
+preprocess the data (prep+bake behind the scenes), fit the model on the
+preprocessed data and also allow for potential post-processing
+activities.</p>
+<p>So let’s bundle everything up into a workflow. A workflow is a
+container object that aggregates information required to fit and predict
+from a model.</p>
+<pre><code>## ══ Workflow ════════════════════════
+## Preprocessor: Recipe
+## Model: linear_reg()
+## 
+## ── Preprocessor ────────────────────
+## 1 Recipe Step
+## 
+## • step_integer()
+## 
+## ── Model ───────────────────────────
+## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm</code></pre>
+<p>A workflow can be fit/trained in much the same way a model can.</p>
+<pre><code>## ══ Workflow [trained] ══════════════
+## Preprocessor: Recipe
+## Model: linear_reg()
+## 
+## ── Preprocessor ────────────────────
+## 1 Recipe Step
+## 
+## • step_integer()
+## 
+## ── Model ───────────────────────────
+## 
+## Call:
+## stats::lm(formula = ..y ~ ., data = data)
+## 
+## Coefficients:
+## (Intercept)      package  
+##       20.14         4.76</code></pre>
+<p>From the model output, we can see the coefficients learned during
+training. They represent the coefficients of the line of best fit that
+gives us the lowest overall error between the actual and predicted
+variable.</p>
+<p>Evaluate model performance using the test set. It’s time to see how
+the model performed! How do we do this?</p>
+<p>Now that we’ve trained the model, we can use it to make predictions
+for the test_set using parsnip::predict(). Then we can compare these
+predictions to the actual label values to evaluate how well (or not!)
+the model is working.</p>
+<p>Let’s start with making predictions for the test set then bind the
+columns to the test set.</p>
+<pre><code>## # A tibble: 10 × 3
+##    package              price .pred
+##    &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt;
+##  1 1 1/9 bushel cartons  13.6  20.1
+##  2 1 1/9 bushel cartons  16.4  20.1
+##  3 1 1/9 bushel cartons  16.4  20.1
+##  4 1 1/9 bushel cartons  13.6  20.1
+##  5 1 1/9 bushel cartons  15.5  20.1
+##  6 1 1/9 bushel cartons  16.4  20.1
+##  7 1/2 bushel cartons    34    29.7
+##  8 1/2 bushel cartons    30    29.7
+##  9 1/2 bushel cartons    30    29.7
+## 10 1/2 bushel cartons    34    29.7</code></pre>
+<p>OK, you have just trained a model and used it to make predictions!
+Let’s evaluate the model’s performance.</p>
+<p>In Tidymodels, we do this using yardstick::metrics(). For linear
+regression, let’s focus on the following metrics:</p>
+<p>Root Mean Square Error (RMSE): The square root of the MSE. This
+yields an absolute metric in the same unit as the label (in this case,
+the price of a pumpkin). The smaller the value, the better the model (in
+a simplistic sense, it represents the average price by which the
+predictions are wrong)</p>
+<p>Coefficient of Determination (usually known as R-squared or R2): A
+relative metric in which the higher the value, the better the fit of the
+model. In essence, this metric represents how much of the variance
+between predicted and actual label values the model is able to
+explain.</p>
+<pre><code>## # A tibble: 3 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       7.23 
+## 2 rsq     standard       0.495
+## 3 mae     standard       5.94</code></pre>
+<p>OK, so that is the model performance. Let’s see if we can get a
+better indication by visualizing a scatter plot of the package and price
+then use the predictions made to overlay a line of best fit.</p>
+<p>This means we’ll have to prep and bake the test set in order to
+encode the package column then bind this to the predictions made by our
+model.</p>
+<pre><code>## # A tibble: 5 × 4
+##   package              package_integer price .pred
+##   &lt;chr&gt;                          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1 1/9 bushel cartons               0  13.6  20.1
+## 2 1 1/9 bushel cartons               0  16.4  20.1
+## 3 1 1/9 bushel cartons               0  16.4  20.1
+## 4 1 1/9 bushel cartons               0  13.6  20.1
+## 5 1 1/9 bushel cartons               0  15.5  20.1</code></pre>
+<p><img src="Lab1_answers_files/figure-html/encode_package-1.png" width="672" /></p>
+<p>Hmm. The model does not do good job of generalizing the relationship
+between a package and its corresponding price.</p>
+<p><em>Question</em> What issues do you see with fitting a linear
+regression to this data?</p>
+<p>Congratulations, you just created a model that can help predict the
+price of a few varieties of pumpkins. But you can probably create a
+better model!</p>
+</div>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>
+<a href="https://bren.ucsb.edu/"><img src="img/bren_white_logo.png" alt="Bren School logo" style="width:350px;" /></a>
+</p>
+<p>
+  This website was made with <u><a href="https://rstudio.github.io/distill/">distill by RStudio</a></u>.
+</p>
+</div>
+<!--/radix_placeholder_navigation_after_body-->
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
