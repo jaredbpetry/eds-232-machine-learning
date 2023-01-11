@@ -22,7 +22,9 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 -   [Statistical Modeling: The Two Cultures](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full)
 
-### Lab:
+### Lab: 
+
+-   [Link to .Rmd](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab1.Rmd)
 
 <!-- \### Assignment materials and dates -->
 
