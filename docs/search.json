@@ -1,6 +1,13 @@
 {
   "articles": [
     {
+      "path": "assignments.html",
+      "title": "Assignments",
+      "author": [],
+      "contents": "\n\nContents\nWeek 1\nSlides:\nAssigned\nReading:\nSupplementary Reading:\nLab:\n\n\n\nAssigned readings and labs will be posted to this page on a weekly\nbasis.\n\nWeek 1\nSlides:\nLecture 1: Course\nWelcome and Intro\nAssigned Reading:\nHOML Ch.\n1 (1.1 - 1.4)\nSupplementary Reading:\nStatistical\nModeling: The Two Cultures\nLab:\n\n\n\n\n\n\n\n\n",
+      "last_modified": "2023-01-10T22:34:29-08:00"
+    },
+    {
       "path": "index.html",
       "title": "EDS 232: Machine Learning in Environmental Science",
       "description": "",
