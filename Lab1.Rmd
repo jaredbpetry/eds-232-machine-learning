@@ -83,7 +83,7 @@ pumpkins <- pumpkins %>%
 
 Let's take a look at pumpkins sales throughout the year.
 
-*Question:* Create a scatter plot using price on the y-axis and day on the x-axis.
+*Question 1:* Create a scatter plot using price on the y-axis and day on the x-axis.
 
 ```{r}
 
@@ -104,7 +104,7 @@ pumpkins %>%
 
 Pumpkins seem to be very hard to weigh consistently, so let's filter them by selecting only pumpkins with the string bushel in the package column and put this in a new data frame "new_pumpkins".
 
-*Question* In the first section of the chunk below, use a combination of dplyr::filter() and stringr::str_detect() to achieve what we want.
+*Question 2* In the first section of the chunk below, use a combination of dplyr::filter() and stringr::str_detect() to achieve what we want.
 
 
 ```{r}
@@ -153,11 +153,11 @@ new_pumpkins %>%
   geom_point(size = 1.6)
 ```
 
-*Question:* Is this a useful plot 🤷? Does anything about it surprise you?
+*Question 3:* Is this a useful plot 🤷? Does anything about it surprise you?
 
 How do we make it useful? To get charts to display useful data, you usually need to group the data somehow.
 
-*Question:* Within new_pumpkins, group the pumpkins into groups based on the month column and then find the mean price for each month (in the next chunk).
+*Question 4:* Within new_pumpkins, group the pumpkins into groups based on the month column and then find the mean price for each month (in the next chunk).
 
 Hint: use dplyr::group_by() %>% summarize()
 
@@ -165,7 +165,7 @@ Hint: use dplyr::group_by() %>% summarize()
 # Find the average price of pumpkins per month
 
 ```
-*Question:* Now do that again, but continue on and plot the results with a bar plot 
+*Question 5:* Now do that again, but continue on and plot the results with a bar plot 
 ```{r}
 # Find the average price of pumpkins per month then plot a bar chart
 
@@ -225,7 +225,7 @@ baked_pumpkins %>%
 
 The processed data baked_pumpkins has all its predictors encoded confirming that indeed the preprocessing steps defined as our recipe will work as expected. This makes it harder for you to read but more intelligible for tidymodels. Take a look at how the observations have been mapped to numbers.
 
-*Question:* From looking at the baked_pumpkins tibble, how many total cities are represented in the data set?
+*Question 6:* From looking at the baked_pumpkins tibble, how many total cities are represented in the data set?
 
 baked_pumpkins is a data frame that we can perform computations on. For instance, let's try to find a good correlation between two variables to potentially build a good predictive model. We'll use the function cor() to do this.
 
@@ -234,13 +234,13 @@ baked_pumpkins is a data frame that we can perform computations on. For instance
 cor(baked_pumpkins$package, baked_pumpkins$price)
 ```
 
-*Question:* Calculate the correlation between pumpkin price and two other variables in the data set
+*Question 7:* Calculate the correlation between pumpkin price and two other variables in the data set
 
 ```{r}
 
 ```
 
-*Question:* Which of these three variables is most highly correlated with price? Why might this be?
+*Question 8:* Which of these three variables is most highly correlated with price? Why might this be?
 
 Now let's visualize a correlation matrix of all the columns using the corrplot package.
 
@@ -389,6 +389,6 @@ plot_results %>%
 
 Hmm. The model does not do good job of generalizing the relationship between a package and its corresponding price.
 
-*Question* What issues do you see with fitting a linear regression to this data?
+*Question 9* What issues do you see with fitting a linear regression to this data?
 
 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. But you can probably create a better model!
