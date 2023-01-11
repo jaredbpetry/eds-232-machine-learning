@@ -37,13 +37,12 @@ Machine learning is a field of inquiry devoted to understanding and building met
 
 **Teaching assistant:** Brian Lee (brianlee52\@bren.ucsb.edu)
 
--   **Office:** Remote
+-   **Office:** TBD
 -   **Office hours:** TBD
 
 ## Important links
 
 -   [Link to full course syllabus](https://docs.google.com/document/d/1VYZQ6cZq4jL8bdFtronp3Qf1BgTOBpXD2BIG5OSK7eM/edit?usp=sharing)
--   [Link to course GitHub Classroom](https://classroom.github.com/classrooms/122136134-eds-232)
 
 ## Weekly course schedule
 
@@ -82,7 +81,7 @@ The goal of EDS 232 is to equip students with a strong foundation in the core co
 ## Tentative topics
 
 | Week \# | Dates            | Lecture                                                        |
-|---------|------------------|----------------------------------------------------------------|
+|--------------|--------------|---------------------------------------------|
 | 1       | 1/9, 1/11        | Introduction, Linear Regression and ML Modeling Fundamentals I |
 | 2       | MLK, 1/18        | Linear Regression and ML Modeling Fundamentals II              |
 | 3       | 1/23, 1/25       | Regularized Regression                                         |
