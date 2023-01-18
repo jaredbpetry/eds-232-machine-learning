@@ -9,9 +9,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="{STUDENT NAME}" />
+<meta name="author" content="Jared Petry" />
 
-<meta name="date" content="2023-01-11" />
 
 <title>Lab1</title>
 
@@ -1040,13 +1039,13 @@ d-appendix d-footnote-list a.footnote-backlink {
 .distill-site-footer a:hover {
   color: var(--hover-color, white);
 }</style>
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/pandoc/header-attrs.js"></script>
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/jquerylib/lib/3.6.0/jquery-3.6.0.min.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/pandoc/header-attrs.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/jquerylib/lib/3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/js/bootstrap.min.js"></script>
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/shim/html5shiv.min.js"></script>
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/bootstrap/shim/respond.min.js"></script>
+<link href="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/bootstrap/shim/html5shiv.min.js"></script>
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/bootstrap/shim/respond.min.js"></script>
 <style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
@@ -1056,11 +1055,11 @@ d-appendix d-footnote-list a.footnote-backlink {
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/navigation-1.1/tabsets.js"></script>
-<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/highlightjs/default.css" rel="stylesheet" />
-<script src="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/highlightjs/highlight.js"></script>
-<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/fontawesome/css/all.css" rel="stylesheet" />
-<link href="/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rmarkdown/rmd/h/fontawesome/css/v4-shims.css" rel="stylesheet" />
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/navigation-1.1/tabsets.js"></script>
+<link href="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/highlightjs/default.css" rel="stylesheet" />
+<script src="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/highlightjs/highlight.js"></script>
+<link href="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/fontawesome/css/all.css" rel="stylesheet" />
+<link href="/Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library/rmarkdown/rmd/h/fontawesome/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1318,8 +1317,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Lab1</h1>
-<h4 class="author">{STUDENT NAME}</h4>
-<h4 class="date">2023-01-11</h4>
+<h4 class="author">Jared Petry</h4>
+<h4 class="date">Jan 16, 2023</h4>
 
 </div>
 
@@ -1336,6 +1335,7 @@ Agriculture.</p>
 box?</p>
 <div id="examine-the-data" class="section level2">
 <h2>Examine the data</h2>
+<pre class="r"><code>glimpse(dat)</code></pre>
 <pre><code>## Rows: 1,757
 ## Columns: 27
 ## $ ...1              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
@@ -1365,6 +1365,13 @@ box?</p>
 ## $ `Trans Mode`      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ ...26             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 ## $ ...27             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
+<pre class="r"><code># Clean names to the snake_case convention
+
+pumpkins &lt;- dat %&gt;% clean_names(case = &quot;snake&quot;)
+
+# Return column names
+
+pumpkins %&gt;% names()</code></pre>
 <pre><code>##  [1] &quot;x1&quot;              &quot;city_name&quot;       &quot;type&quot;            &quot;package&quot;        
 ##  [5] &quot;variety&quot;         &quot;sub_variety&quot;     &quot;grade&quot;           &quot;date&quot;           
 ##  [9] &quot;low_price&quot;       &quot;high_price&quot;      &quot;mostly_low&quot;      &quot;mostly_high&quot;    
@@ -1375,6 +1382,12 @@ box?</p>
 </div>
 <div id="select-desired-columns" class="section level2">
 <h2>Select desired columns</h2>
+<pre class="r"><code>pumpkins &lt;- pumpkins %&gt;% select(variety, city_name, package, low_price, high_price, date)
+
+
+## Print data set
+
+pumpkins %&gt;% slice_head(n = 5)</code></pre>
 <pre><code>## # A tibble: 5 × 6
 ##   variety     city_name package      low_price high_price date   
 ##   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
@@ -1383,6 +1396,21 @@ box?</p>
 ## 3 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 9/24/16
 ## 4 HOWDEN TYPE BALTIMORE 24 inch bins       160        160 9/24/16
 ## 5 HOWDEN TYPE BALTIMORE 24 inch bins        90        100 11/5/16</code></pre>
+<pre class="r"><code>## Load lubridate
+
+library(lubridate)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<pre class="r"><code># Extract the month and day from the dates and add as new columns
+pumpkins &lt;- pumpkins %&gt;%
+  mutate(date = mdy(date),  
+         day = yday(date),
+         month = month(date))
+pumpkins %&gt;% 
+  select(-day)</code></pre>
 <pre><code>## # A tibble: 1,757 × 7
 ##    variety     city_name package      low_price high_price date       month
 ##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;
@@ -1396,7 +1424,11 @@ box?</p>
 ##  8 HOWDEN TYPE BALTIMORE 36 inch bins       160        160 2016-09-24     9
 ##  9 HOWDEN TYPE BALTIMORE 36 inch bins       160        170 2016-10-01    10
 ## 10 HOWDEN TYPE BALTIMORE 36 inch bins       160        160 2016-10-01    10
-## # … with 1,747 more rows</code></pre>
+## # … with 1,747 more rows
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
+<pre class="r"><code>## View the first few rows
+
+pumpkins %&gt;% slice_head(n = 7)</code></pre>
 <pre><code>## # A tibble: 7 × 8
 ##   variety     city_name package      low_price high_price date         day month
 ##   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -1409,9 +1441,15 @@ box?</p>
 ## 7 HOWDEN TYPE BALTIMORE 36 inch bins       160        170 2016-09-24   268     9</code></pre>
 <p>There are two column dealing with price, high and low. Let’s combine
 them into a single average price column.</p>
+<pre class="r"><code># Create a new column price
+pumpkins &lt;- pumpkins %&gt;% 
+  mutate(price = (low_price+ high_price)/2)</code></pre>
 <p>Let’s take a look at pumpkins sales throughout the year.</p>
-<p><em>Question:</em> Create a scatter plot using price on the y-axis
+<p><em>Question 1:</em> Create a scatter plot using price on the y-axis
 and day on the x-axis.</p>
+<pre class="r"><code>scatter_price &lt;- ggplot(data = pumpkins, aes(x = day, y = price)) + geom_point()
+scatter_price</code></pre>
+<p><img src="Lab1_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Now, before we go any further, let’s take another look at the data.
 Notice anything odd?</p>
 <p>That’s right: pumpkins are sold in many different configurations.
@@ -1419,6 +1457,9 @@ Some are sold in 1 1/9 bushel measures, and some in 1/2 bushel measures,
 some per pumpkin, some per pound, and some in big boxes with varying
 widths.</p>
 <p>Let’s verify this:</p>
+<pre class="r"><code># Verify the distinct observations in Package column
+pumpkins %&gt;% 
+  distinct(package)</code></pre>
 <pre><code>## # A tibble: 15 × 1
 ##    package             
 ##    &lt;chr&gt;               
@@ -1440,23 +1481,33 @@ widths.</p>
 <p>Pumpkins seem to be very hard to weigh consistently, so let’s filter
 them by selecting only pumpkins with the string bushel in the package
 column and put this in a new data frame “new_pumpkins”.</p>
-<p><em>Question</em> In the first section of the chunk below, use a
+<p><em>Question 2</em> In the first section of the chunk below, use a
 combination of dplyr::filter() and stringr::str_detect() to achieve what
 we want.</p>
+<pre class="r"><code># Retain only pumpkins with &quot;bushel&quot; in the package column
+new_pumpkins &lt;- pumpkins |&gt; filter(str_detect(string = pumpkins$package, 
+                                              pattern = &quot;bushel&quot;))
+
+# Get the dimensions of the new data
+dim(new_pumpkins)</code></pre>
 <pre><code>## [1] 415   9</code></pre>
+<pre class="r"><code># View a few rows of the new data
+new_pumpkins %&gt;% 
+  slice_head(n = 10)</code></pre>
 <pre><code>## # A tibble: 10 × 9
-##    variety  city_name package  low_price high_price date         day month price
-##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-09-24   268     9  13.6
-##  2 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-09-24   268     9  16.4
-##  3 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-01   275    10  16.4
-##  4 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-01   275    10  15.5
-##  5 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-08   282    10  13.6
-##  6 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-08   282    10  16.4
-##  7 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-08   282    10  15.5
-##  8 PIE TYPE BALTIMORE 1 1/9 b…        17       18.5 2016-10-08   282    10  16.1
-##  9 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-15   289    10  13.6
-## 10 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-15   289    10  15.5</code></pre>
+##    variety  city_name package       low_p…¹ high_…² date         day month price
+##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-09-24   268     9  15  
+##  2 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-09-24   268     9  18  
+##  3 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-10-01   275    10  18  
+##  4 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-01   275    10  17  
+##  5 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-10-08   282    10  15  
+##  6 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-10-08   282    10  18  
+##  7 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-08   282    10  17  
+##  8 PIE TYPE BALTIMORE 1 1/9 bushel…      17    18.5 2016-10-08   282    10  17.8
+##  9 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-10-15   289    10  15  
+## 10 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-15   289    10  17  
+## # … with abbreviated variable names ¹​low_price, ²​high_price</code></pre>
 <p>You can see that we have narrowed down to 415 rows of data containing
 pumpkins by the bushel.</p>
 <p>But wait! There’s one more thing to do</p>
@@ -1464,36 +1515,77 @@ pumpkins by the bushel.</p>
 normalize the pricing so that you show the pricing per bushel, not per 1
 1/9 or 1/2 bushel. Time to do some math to standardize it.</p>
 <p>We’ll use the function case_when() to mutate the Price column
-depending on some conditions. case_when allows you to vectorise multiple
+depending on some conditions. case_when allows you to vectorize multiple
 if_else()statements.</p>
+<pre class="r"><code># Convert the price if the Package contains fractional bushel values
+new_pumpkins &lt;- new_pumpkins %&gt;% 
+  mutate(price = case_when(
+    str_detect(package, &quot;1 1/9&quot;) ~ price/(1.1),
+    str_detect(package, &quot;1/2&quot;) ~ price*2,
+    TRUE ~ price))
+
+# View the first few rows of the data
+new_pumpkins %&gt;% 
+  slice_head(n = 30)</code></pre>
 <pre><code>## # A tibble: 30 × 9
-##    variety  city_name package  low_price high_price date         day month price
-##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-09-24   268     9  12.4
-##  2 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-09-24   268     9  14.9
-##  3 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-01   275    10  14.9
-##  4 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-01   275    10  14.0
-##  5 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-08   282    10  12.4
-##  6 PIE TYPE BALTIMORE 1 1/9 b…        18       18   2016-10-08   282    10  14.9
-##  7 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-08   282    10  14.0
-##  8 PIE TYPE BALTIMORE 1 1/9 b…        17       18.5 2016-10-08   282    10  14.7
-##  9 PIE TYPE BALTIMORE 1 1/9 b…        15       15   2016-10-15   289    10  12.4
-## 10 PIE TYPE BALTIMORE 1 1/9 b…        17       17   2016-10-15   289    10  14.0
-## # … with 20 more rows</code></pre>
+##    variety  city_name package       low_p…¹ high_…² date         day month price
+##    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-09-24   268     9  13.6
+##  2 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-09-24   268     9  16.4
+##  3 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-10-01   275    10  16.4
+##  4 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-01   275    10  15.5
+##  5 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-10-08   282    10  13.6
+##  6 PIE TYPE BALTIMORE 1 1/9 bushel…      18    18   2016-10-08   282    10  16.4
+##  7 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-08   282    10  15.5
+##  8 PIE TYPE BALTIMORE 1 1/9 bushel…      17    18.5 2016-10-08   282    10  16.1
+##  9 PIE TYPE BALTIMORE 1 1/9 bushel…      15    15   2016-10-15   289    10  13.6
+## 10 PIE TYPE BALTIMORE 1 1/9 bushel…      17    17   2016-10-15   289    10  15.5
+## # … with 20 more rows, and abbreviated variable names ¹​low_price, ²​high_price
+## # ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
 <div id="data-visualization" class="section level2">
 <h2>Data Visualization</h2>
+<pre class="r"><code># Set theme
+theme_set(theme_light())
+
+# Make a scatter plot of month and price
+new_pumpkins %&gt;% 
+  ggplot(mapping = aes(x = month, y = price)) +
+  geom_point(size = 1.6)</code></pre>
 <p><img src="Lab1_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p><em>Question:</em> Is this a useful plot 🤷? Does anything about it
+<p><em>Question 3:</em> Is this a useful plot 🤷? Does anything about it
 surprise you?</p>
 <p>How do we make it useful? To get charts to display useful data, you
 usually need to group the data somehow.</p>
-<p><em>Question:</em> Within new_pumpkins, group the pumpkins into
+<p><strong>I saw that the pre-populated code made a scatterplot of day
+vs price rather than month vs price… so I changed it to month because I
+think that’s where we are trying to go with it. I think this is kind of
+a useful plot… but it’s really ugly and it would be nice to see averages
+of the pumpkin prices per month.</strong></p>
+<p><em>Question 4:</em> Within new_pumpkins, group the pumpkins into
 groups based on the month column and then find the mean price for each
 month (in the next chunk).</p>
 <p>Hint: use dplyr::group_by() %&gt;% summarize()</p>
-<p><em>Question:</em> Now do that again, but continue on and plot the
+<pre class="r"><code># Find the average price of pumpkins per month
+new_pumpkins |&gt; 
+  group_by(month) |&gt; 
+  summarise(mean(price))</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   month `mean(price)`
+##   &lt;dbl&gt;         &lt;dbl&gt;
+## 1     8          24.5
+## 2     9          28.6
+## 3    10          28.4
+## 4    11          25.1
+## 5    12          15.6</code></pre>
+<p><em>Question 5:</em> Now do that again, but continue on and plot the
 results with a bar plot</p>
+<pre class="r"><code># Find the average price of pumpkins per month then plot a bar chart
+new_pumpkins |&gt; 
+  group_by(month) |&gt; 
+  summarise(monthly_mean_price = mean(price)) |&gt; 
+  ggplot(aes(x = month, y = monthly_mean_price)) + geom_bar(stat = &quot;identity&quot;)</code></pre>
+<p><img src="Lab1_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>#Preprocessing data for modelling using recipes</p>
 <p>What if we wanted to predict the price of a pumpkin based on the city
 or package columns which are of type character? How could we find the
@@ -1516,6 +1608,13 @@ order to get it ready for modelling.</p>
 <p>Now, let’s create a recipe that prepares our data for modelling by
 substituting a unique integer for all the observations in the predictor
 columns:</p>
+<pre class="r"><code># Specify a recipe
+pumpkins_recipe &lt;- recipe(price ~ ., data = new_pumpkins) %&gt;% 
+  step_integer(all_predictors(), zero_based = TRUE)
+
+
+# Print out the recipe
+pumpkins_recipe</code></pre>
 <pre><code>## Recipe
 ## 
 ## Inputs:
@@ -1550,38 +1649,85 @@ can be later applied to other data sets.</p>
 set.</p>
 <p>Now let’s prep and bake our recipes to confirm that under the hood,
 the predictor columns will be first encoded before a model is fit.</p>
+<pre class="r"><code># Prep the recipe
+pumpkins_prep &lt;- prep(pumpkins_recipe)
+
+# Bake the recipe to extract a preprocessed new_pumpkins data
+baked_pumpkins &lt;- bake(pumpkins_prep, new_data = NULL)
+
+# Print out the baked data set
+baked_pumpkins %&gt;% 
+  slice_head(n = 10)</code></pre>
 <pre><code>## # A tibble: 10 × 9
 ##    variety city_name package low_price high_price  date   day month price
 ##      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1       3         1       0         5          3     0     5     1  12.4
-##  2       3         1       0        10          7     0     5     1  14.9
-##  3       3         1       0        10          7     6    11     2  14.9
-##  4       3         1       0         9          6     6    11     2  14.0
-##  5       3         1       0         5          3     7    12     2  12.4
-##  6       3         1       0        10          7     7    12     2  14.9
-##  7       3         1       0         9          6     7    12     2  14.0
-##  8       3         1       0         9          8     7    12     2  14.7
-##  9       3         1       0         5          3     8    13     2  12.4
-## 10       3         1       0         9          6     8    13     2  14.0</code></pre>
+##  1       3         1       0         5          3     0     5     1  13.6
+##  2       3         1       0        10          7     0     5     1  16.4
+##  3       3         1       0        10          7     6    11     2  16.4
+##  4       3         1       0         9          6     6    11     2  15.5
+##  5       3         1       0         5          3     7    12     2  13.6
+##  6       3         1       0        10          7     7    12     2  16.4
+##  7       3         1       0         9          6     7    12     2  15.5
+##  8       3         1       0         9          8     7    12     2  16.1
+##  9       3         1       0         5          3     8    13     2  13.6
+## 10       3         1       0         9          6     8    13     2  15.5</code></pre>
 <p>The processed data baked_pumpkins has all its predictors encoded
 confirming that indeed the preprocessing steps defined as our recipe
 will work as expected. This makes it harder for you to read but more
 intelligible for tidymodels. Take a look at how the observations have
 been mapped to numbers.</p>
-<p><em>Question:</em> From looking at the baked_pumpkins tibble, how
+<p><em>Question 6:</em> From looking at the baked_pumpkins tibble, how
 many total cities are represented in the data set?</p>
+<pre class="r"><code>baked_pumpkins |&gt; distinct(city_name)</code></pre>
+<pre><code>## # A tibble: 10 × 1
+##    city_name
+##        &lt;dbl&gt;
+##  1         1
+##  2         0
+##  3         2
+##  4         3
+##  5         4
+##  6         6
+##  7         5
+##  8         8
+##  9         7
+## 10         9</code></pre>
+<p><strong>Looks like there are 10 different cities in this
+analysis</strong></p>
 <p>baked_pumpkins is a data frame that we can perform computations on.
 For instance, let’s try to find a good correlation between two variables
 to potentially build a good predictive model. We’ll use the function
 cor() to do this.</p>
-<pre><code>## [1] 0.4944854</code></pre>
-<p><em>Question:</em> Calculate the correlation between pumpkin price
+<pre class="r"><code># Find the correlation between the package and the price
+cor(baked_pumpkins$package, baked_pumpkins$price)</code></pre>
+<pre><code>## [1] 0.6061713</code></pre>
+<p><em>Question 7:</em> Calculate the correlation between pumpkin price
 and two other variables in the data set</p>
-<p><em>Question:</em> Which of these three variables is most highly
+<pre class="r"><code># Find the correlation between the month and the price
+cor(baked_pumpkins$month, baked_pumpkins$price)</code></pre>
+<pre><code>## [1] -0.1487829</code></pre>
+<pre class="r"><code># Find the correlation between the variety and the price
+cor(baked_pumpkins$variety, baked_pumpkins$price)</code></pre>
+<pre><code>## [1] -0.863479</code></pre>
+<p><em>Question 8:</em> Which of these three variables is most highly
 correlated with price? Why might this be?</p>
+<p><strong>The variety variable is most correlated with the pumpkin
+price out of that and the other two variables. I think this is because
+different species or sizes of pumpkin have different value based on
+their decorative appeal.</strong></p>
 <p>Now let’s visualize a correlation matrix of all the columns using the
 corrplot package.</p>
-<p><img src="Lab1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code># Load the corrplot package
+library(corrplot)
+
+# Obtain correlation matrix
+corr_mat &lt;- cor(baked_pumpkins %&gt;% 
+                  # Drop columns that are not really informative
+                  select(-c(low_price, high_price)))
+
+# Make a correlation plot between the variables
+corrplot(corr_mat, method = &quot;shade&quot;, shade.col = NA, tl.col = &quot;black&quot;, tl.srt = 45, addCoef.col = &quot;black&quot;, cl.pos = &quot;n&quot;, order = &quot;original&quot;)</code></pre>
+<p><img src="Lab1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="build-a-linear-regression-model" class="section level1">
 <h1>Build a linear regression model</h1>
@@ -1599,6 +1745,26 @@ define a recipe that will encode the predictor column into a set of
 integers, then build a model specification. We won’t prep and bake our
 recipe since we already know it will preprocess the data as
 expected.</p>
+<pre class="r"><code>set.seed(123)
+# Split the data into training and test sets
+pumpkins_split &lt;- new_pumpkins %&gt;% 
+  initial_split(prop = 0.8)
+
+
+# Extract training and test data
+pumpkins_train &lt;- training(pumpkins_split)
+pumpkins_test &lt;- testing(pumpkins_split)
+
+
+# Create a recipe for preprocessing the data
+lm_pumpkins_recipe &lt;- recipe(price ~ package, data = pumpkins_train) %&gt;% 
+  step_integer(all_predictors(), zero_based = TRUE)
+
+
+# Create a linear model specification
+lm_spec &lt;- linear_reg() %&gt;% 
+  set_engine(&quot;lm&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)</code></pre>
 <p>Now that we have a recipe and a model specification, we need to find
 a way of bundling them together into an object that will first
 preprocess the data (prep+bake behind the scenes), fit the model on the
@@ -1607,37 +1773,50 @@ activities.</p>
 <p>So let’s bundle everything up into a workflow. A workflow is a
 container object that aggregates information required to fit and predict
 from a model.</p>
-<pre><code>## ══ Workflow ════════════════════════
+<pre class="r"><code># Hold modelling components in a workflow
+lm_wf &lt;- workflow() %&gt;% 
+  add_recipe(lm_pumpkins_recipe) %&gt;% 
+  add_model(lm_spec)
+
+# Print out the workflow
+lm_wf</code></pre>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: linear_reg()
 ## 
-## ── Preprocessor ────────────────────
+## ── Preprocessor ────────────────────────────────────────────────────────────────
 ## 1 Recipe Step
 ## 
 ## • step_integer()
 ## 
-## ── Model ───────────────────────────
+## ── Model ───────────────────────────────────────────────────────────────────────
 ## Linear Regression Model Specification (regression)
 ## 
 ## Computational engine: lm</code></pre>
 <p>A workflow can be fit/trained in much the same way a model can.</p>
-<pre><code>## ══ Workflow [trained] ══════════════
+<pre class="r"><code># Train the model
+lm_wf_fit &lt;- lm_wf %&gt;% 
+  fit(data = pumpkins_train)
+
+# Print the model coefficients learned 
+lm_wf_fit</code></pre>
+<pre><code>## ══ Workflow [trained] ══════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: linear_reg()
 ## 
-## ── Preprocessor ────────────────────
+## ── Preprocessor ────────────────────────────────────────────────────────────────
 ## 1 Recipe Step
 ## 
 ## • step_integer()
 ## 
-## ── Model ───────────────────────────
+## ── Model ───────────────────────────────────────────────────────────────────────
 ## 
 ## Call:
 ## stats::lm(formula = ..y ~ ., data = data)
 ## 
 ## Coefficients:
 ## (Intercept)      package  
-##       30.34        10.02</code></pre>
+##       20.14         4.76</code></pre>
 <p>From the model output, we can see the coefficients learned during
 training. They represent the coefficients of the line of best fit that
 gives us the lowest overall error between the actual and predicted
@@ -1650,19 +1829,33 @@ predictions to the actual label values to evaluate how well (or not!)
 the model is working.</p>
 <p>Let’s start with making predictions for the test set then bind the
 columns to the test set.</p>
+<pre class="r"><code># Make predictions for the test set
+predictions &lt;- lm_wf_fit %&gt;% 
+  predict(new_data = pumpkins_test)
+
+
+# Bind predictions to the test set
+lm_results &lt;- pumpkins_test %&gt;% 
+  select(c(package, price)) %&gt;% 
+  bind_cols(predictions)
+
+
+# Print the first ten rows of the tibble
+lm_results %&gt;% 
+  slice_head(n = 10)</code></pre>
 <pre><code>## # A tibble: 10 × 3
 ##    package              price .pred
 ##    &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt;
-##  1 1 1/9 bushel cartons  12.4  30.3
-##  2 1 1/9 bushel cartons  14.9  30.3
-##  3 1 1/9 bushel cartons  14.9  30.3
-##  4 1 1/9 bushel cartons  12.4  30.3
-##  5 1 1/9 bushel cartons  14.0  30.3
-##  6 1 1/9 bushel cartons  14.9  30.3
-##  7 1/2 bushel cartons    68    50.4
-##  8 1/2 bushel cartons    60    50.4
-##  9 1/2 bushel cartons    60    50.4
-## 10 1/2 bushel cartons    68    50.4</code></pre>
+##  1 1 1/9 bushel cartons  13.6  20.1
+##  2 1 1/9 bushel cartons  16.4  20.1
+##  3 1 1/9 bushel cartons  16.4  20.1
+##  4 1 1/9 bushel cartons  13.6  20.1
+##  5 1 1/9 bushel cartons  15.5  20.1
+##  6 1 1/9 bushel cartons  16.4  20.1
+##  7 1/2 bushel cartons    34    29.7
+##  8 1/2 bushel cartons    30    29.7
+##  9 1/2 bushel cartons    30    29.7
+## 10 1/2 bushel cartons    34    29.7</code></pre>
 <p>OK, you have just trained a model and used it to make predictions!
 Let’s evaluate the model’s performance.</p>
 <p>In Tidymodels, we do this using yardstick::metrics(). For linear
@@ -1677,31 +1870,63 @@ relative metric in which the higher the value, the better the fit of the
 model. In essence, this metric represents how much of the variance
 between predicted and actual label values the model is able to
 explain.</p>
+<pre class="r"><code># Evaluate performance of linear regression
+metrics(data = lm_results,
+        truth = price,
+        estimate = .pred)</code></pre>
 <pre><code>## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard      21.8  
-## 2 rsq     standard       0.452
-## 3 mae     standard      20.0</code></pre>
+## 1 rmse    standard       7.23 
+## 2 rsq     standard       0.495
+## 3 mae     standard       5.94</code></pre>
 <p>OK, so that is the model performance. Let’s see if we can get a
 better indication by visualizing a scatter plot of the package and price
 then use the predictions made to overlay a line of best fit.</p>
 <p>This means we’ll have to prep and bake the test set in order to
 encode the package column then bind this to the predictions made by our
 model.</p>
+<pre class="r"><code># Encode package column
+package_encode &lt;- lm_pumpkins_recipe %&gt;% 
+  prep() %&gt;% 
+  bake(new_data = pumpkins_test) %&gt;% 
+  select(package)
+
+
+# Bind encoded package column to the results
+ plot_results &lt;- lm_results %&gt;%
+ bind_cols(package_encode %&gt;%
+               rename(package_integer = package)) %&gt;%
+  relocate(package_integer, .after = package)
+
+
+# Print new results data frame
+plot_results %&gt;%
+  slice_head(n = 5)</code></pre>
 <pre><code>## # A tibble: 5 × 4
 ##   package              package_integer price .pred
 ##   &lt;chr&gt;                          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 1 1/9 bushel cartons               0  12.4  30.3
-## 2 1 1/9 bushel cartons               0  14.9  30.3
-## 3 1 1/9 bushel cartons               0  14.9  30.3
-## 4 1 1/9 bushel cartons               0  12.4  30.3
-## 5 1 1/9 bushel cartons               0  14.0  30.3</code></pre>
+## 1 1 1/9 bushel cartons               0  13.6  20.1
+## 2 1 1/9 bushel cartons               0  16.4  20.1
+## 3 1 1/9 bushel cartons               0  16.4  20.1
+## 4 1 1/9 bushel cartons               0  13.6  20.1
+## 5 1 1/9 bushel cartons               0  15.5  20.1</code></pre>
+<pre class="r"><code># Make a scatter plot
+plot_results %&gt;%
+  ggplot(mapping = aes(x = package_integer, y = price)) +
+   geom_point(size = 1.6) +
+   # Overlay a line of best fit
+   geom_line(aes(y = .pred), color = &quot;orange&quot;, size = 1.2) +
+   xlab(&quot;package&quot;)</code></pre>
 <p><img src="Lab1_files/figure-html/encode_package-1.png" width="672" /></p>
 <p>Hmm. The model does not do good job of generalizing the relationship
 between a package and its corresponding price.</p>
-<p><em>Question</em> What issues do you see with fitting a linear
+<p><em>Question 9</em> What issues do you see with fitting a linear
 regression to this data?</p>
+<p><strong>The linear model is attempting to fit a line of best fit
+within data that does not seem to be linear at all but rather
+categorical and I think somehow if we could create a model that sort of
+curved up and down would fit this data much better.</strong></p>
 <p>Congratulations, you just created a model that can help predict the
 price of a few varieties of pumpkins. But you can probably create a
 better model!</p>

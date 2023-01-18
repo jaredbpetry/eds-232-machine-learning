@@ -1,12 +1,14 @@
 ---
 title: "Lab1"
-author: "{STUDENT NAME}"
-date: "`r Sys.Date()`"
-output: html_document
+author: 'Jared Petry'
+date: "Jan 16, 2023"
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 library("tidymodels")
 library("tidyverse")
 library("dplyr")
@@ -86,8 +88,8 @@ Let's take a look at pumpkins sales throughout the year.
 *Question 1:* Create a scatter plot using price on the y-axis and day on the x-axis.
 
 ```{r}
-
-
+scatter_price <- ggplot(data = pumpkins, aes(x = day, y = price)) + geom_point()
+scatter_price
 ```
 
 Now, before we go any further, let's take another look at the data. Notice anything odd?
@@ -109,7 +111,8 @@ Pumpkins seem to be very hard to weigh consistently, so let's filter them by sel
 
 ```{r}
 # Retain only pumpkins with "bushel" in the package column
-
+new_pumpkins <- pumpkins |> filter(str_detect(string = pumpkins$package, 
+                                              pattern = "bushel"))
 
 # Get the dimensions of the new data
 dim(new_pumpkins)
@@ -125,7 +128,7 @@ But wait! There's one more thing to do
 
 Did you notice that the bushel amount varies per row? You need to normalize the pricing so that you show the pricing per bushel, not per 1 1/9 or 1/2 bushel. Time to do some math to standardize it.
 
-We'll use the function case_when() to mutate the Price column depending on some conditions. case_when allows you to vectorise multiple if_else()statements.
+We'll use the function case_when() to mutate the Price column depending on some conditions. case_when allows you to vectorize multiple if_else()statements.
 
 ```{r}
 # Convert the price if the Package contains fractional bushel values
@@ -149,7 +152,7 @@ theme_set(theme_light())
 
 # Make a scatter plot of month and price
 new_pumpkins %>% 
-  ggplot(mapping = aes(x = day, y = price)) +
+  ggplot(mapping = aes(x = month, y = price)) +
   geom_point(size = 1.6)
 ```
 
@@ -157,18 +160,25 @@ new_pumpkins %>%
 
 How do we make it useful? To get charts to display useful data, you usually need to group the data somehow.
 
+**I saw that the pre-populated code made a scatterplot of day vs price rather than month vs price... so I changed it to month because I think that's where we are trying to go with it.  I think this is kind of a useful plot... but it's really ugly and it would be nice to see averages of the pumpkin prices per month.**
+
 *Question 4:* Within new_pumpkins, group the pumpkins into groups based on the month column and then find the mean price for each month (in the next chunk).
 
 Hint: use dplyr::group_by() %>% summarize()
 
 ```{r}
 # Find the average price of pumpkins per month
-
+new_pumpkins |> 
+  group_by(month) |> 
+  summarise(mean(price))
 ```
 *Question 5:* Now do that again, but continue on and plot the results with a bar plot 
 ```{r}
 # Find the average price of pumpkins per month then plot a bar chart
-
+new_pumpkins |> 
+  group_by(month) |> 
+  summarise(monthly_mean_price = mean(price)) |> 
+  ggplot(aes(x = month, y = monthly_mean_price)) + geom_bar(stat = "identity")
 ```
 
 #Preprocessing data for modelling using recipes
@@ -227,6 +237,13 @@ The processed data baked_pumpkins has all its predictors encoded confirming that
 
 *Question 6:* From looking at the baked_pumpkins tibble, how many total cities are represented in the data set?
 
+```{r}
+baked_pumpkins |> distinct(city_name)
+```
+
+**Looks like there are 10 different cities in this analysis**
+
+
 baked_pumpkins is a data frame that we can perform computations on. For instance, let's try to find a good correlation between two variables to potentially build a good predictive model. We'll use the function cor() to do this.
 
 ```{r}
@@ -237,10 +254,17 @@ cor(baked_pumpkins$package, baked_pumpkins$price)
 *Question 7:* Calculate the correlation between pumpkin price and two other variables in the data set
 
 ```{r}
+# Find the correlation between the month and the price
+cor(baked_pumpkins$month, baked_pumpkins$price)
 
+# Find the correlation between the variety and the price
+cor(baked_pumpkins$variety, baked_pumpkins$price)
 ```
 
 *Question 8:* Which of these three variables is most highly correlated with price? Why might this be?
+
+**The variety variable is most correlated with the pumpkin price out of that and the other two variables.  I think this is because different species or sizes of pumpkin have different value based on their decorative appeal.**
+
 
 Now let's visualize a correlation matrix of all the columns using the corrplot package.
 
@@ -390,5 +414,7 @@ plot_results %>%
 Hmm. The model does not do good job of generalizing the relationship between a package and its corresponding price.
 
 *Question 9* What issues do you see with fitting a linear regression to this data?
+
+**The linear model is attempting to fit a line of best fit within data that does not seem to be linear at all but rather categorical and I think somehow if we could create a model that sort of curved up and down would fit this data much better.**
 
 Congratulations, you just created a model that can help predict the price of a few varieties of pumpkins. But you can probably create a better model!
